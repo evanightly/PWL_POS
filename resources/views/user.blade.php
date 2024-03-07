@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Data User</title>
 </head>
+
 <body>
     <h1>Data User</h1>
     <table border="1" cellpadding="2" cellspacing="0">
@@ -12,14 +14,11 @@
             <th>Nama</th>
             <th>ID Level Pengguna</th>
         </tr>
-        @foreach ($data as $u)
-            <tr>
-                <td>{{ $u->user_id }}</td>
-                <td>{{ $u->username }}</td>
-                <td>{{ $u->nama }}</td>
-                <td>{{ $u->level_id }}</td>
-            </tr>
-        @endforeach
+        <td>{{ $data->user_id }}</td>
+        <td>{{ $data->username }}</td>
+        <td>{{ $data->nama }}</td>
+        <td>{{ $data->level_id }}</td>
     </table>
 </body>
+
 </html>
