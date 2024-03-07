@@ -111,7 +111,8 @@ class UserController extends Controller {
 
         // ----------------------------------------------
 
-        $user = UserModel::all();
+        // $user = UserModel::all();
+        $user = UserModel::with('level')->get();
         return view('user', ['data' => $user]);
     }
 
