@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -113,29 +114,24 @@ class UserController extends Controller {
 
         // $user = UserModel::all();
         $user = UserModel::with('level')->get();
-        return view('user.user', ['data' => $user]);
+        return view('user.index', ['data' => $user]);
     }
 
-    public function tambah() {
-        return view('user.user_tambah');
+    public function create() {
+        return view('user.create');
     }
 
-    public function tambah_simpan(Request $request) {
-        UserModel::create([
-            'level_id' => $request->level_id,
-            'username' => $request->username,
-            'nama' => $request->nama,
-            'password' => Hash::make('$request->password'), // ??
-        ]);
+    public function store(StoreUserRequest $request) {
+        UserModel::create($request->validated());
         return redirect('/user');
     }
 
-    public function ubah($id) {
+    public function edit($id) {
         $user = UserModel::find($id);
-        return view('user.user_ubah', ['data' => $user]);
+        return view('user.edit', ['data' => $user]);
     }
 
-    public function ubah_simpan(Request $request, $id) {
+    public function update(Request $request, $id) {
         $user = UserModel::find($id);
         $user->username = $request->username;
         $user->nama = $request->nama;
@@ -145,7 +141,7 @@ class UserController extends Controller {
         return redirect('/user');
     }
 
-    public function hapus($id) {
+    public function destroy($id) {
         $user = UserModel::find($id);
         $user->delete();
         return redirect('/user');

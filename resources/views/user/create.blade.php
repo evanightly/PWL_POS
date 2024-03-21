@@ -5,6 +5,15 @@
 @stop
 @section('content')
     <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -12,7 +21,7 @@
                         <h3 class="card-title">Form Tambah Data User</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/user/tambah_simpan" method="post">
+                        <form action="/user" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="username">Username</label>

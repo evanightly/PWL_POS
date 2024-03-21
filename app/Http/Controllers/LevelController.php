@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLevelRequest;
+use App\Models\LevelModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Monolog\Level;
 
 class LevelController extends Controller {
     public function index() {
@@ -24,8 +27,8 @@ class LevelController extends Controller {
         return view('level.create');
     }
 
-    public function store(Request $request) {
-        DB::insert('insert into m_level(level_kode, level_nama, created_at) values(?,?, ?)', [$request->kodeLevel, $request->namaLevel, now()]);
+    public function store(StoreLevelRequest $request) {
+        LevelModel::create($request->validated());
         return redirect('/level');
     }
 }
