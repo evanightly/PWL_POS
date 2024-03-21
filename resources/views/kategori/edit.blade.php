@@ -10,7 +10,7 @@
             <div class="card-header">
                 <h3 class="card-title">Tambah Kategori</h3>
             </div>
-            <form action="{{ url('kategori/update', [$data->kategori_id]) }}" method="POST">
+            <form action="{{ route('kategori.update', [$data->kategori_id]) }}" method="POST">
                 @method('PUT')
                 <div class="card-body">
                     <div class="form-group">

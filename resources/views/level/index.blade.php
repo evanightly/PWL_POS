@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.app')
 
-<head>
-    <title>Data Level Pengguna</title>
-</head>
+@section('subtitle', 'Level')
+@section('content_header_title', 'Level')
+@section('content_header_subtitle', 'Daftar Level')
 
-<body>
-    <h1>Data Level Pengguna</h1>
-    <table border="1" cellpadding="2" cellspacing="0">
-        <tr>
-            <th>ID</th>
-            <th>Kode Level</th>
-            <th>Nama Level</th>
-        </tr>
-        @foreach ($data as $d)
-            <tr>
-                <td>{{ $d->level_id }}</td>
-                <td>{{ $d->level_kode }}</td>
-                <td>{{ $d->level_nama }}</td>
-            </tr>
-        @endforeach
-    </table>
-</body>
+@section('content_body')
+    <div class="container">
+        <div class="card">
+            <div class="card-header d-flex gap-3 align-items-center">
+                <h3 class="card-title">Daftar Level</h3>
+                <a href="{{ route('level.create') }}" class="btn btn-primary">Tambah Level</a>
+            </div>
+            <div class="card-body">{{ $dataTable->table() }}</div>
+        </div>
+    </div>
+@endsection
 
-</html>
+@push('js')
+    {{ $dataTable->scripts() }}
+@endpush

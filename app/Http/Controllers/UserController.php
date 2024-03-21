@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UserModelDataTable;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller {
-    public function index() {
+    public function index(UserModelDataTable $datatable) {
         // $data = [
         //     'level_id' => 2,
         //     'username' => 'manager_tiga',
@@ -113,8 +114,10 @@ class UserController extends Controller {
         // ----------------------------------------------
 
         // $user = UserModel::all();
-        $user = UserModel::with('level')->get();
-        return view('user.index', ['data' => $user]);
+        // $user = UserModel::with('level')->get();
+        // return view('user.index', ['data' => $user]);
+
+        return $datatable->render('user.index');
     }
 
     public function create() {

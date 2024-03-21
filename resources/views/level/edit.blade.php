@@ -1,7 +1,7 @@
 @extends('adminlte::page')
-@section('title', 'Tambah Level')
+@section('title', 'Edit Level')
 @section('content_header')
-    <h1>Tambah Level</h1>
+    <h1>Edit Level</h1>
 @stop
 @section('content')
     <div class="container">
@@ -18,23 +18,24 @@
             <div class="col-md-8 offset-md-2">
                 <div class="card">
                     <div class="card-header">
-                        Create Level
+                        Edit Level
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('level.store') }}" method="POST">
+                        <form action="{{ route('level.update', [$level->level_id]) }}" method="POST">
                             @csrf
+                            @method('PUT')
 
                             <div class="form-group">
                                 <label for="level_kode">Level Kode</label>
-                                <input type="text" name="level_kode" id="level_kode" class="form-control" required>
+                                <input type="text" name="level_kode" id="level_kode" class="form-control" value="{{ $level->level_kode }}" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="level_nama">Level Nama</label>
-                                <input type="text" name="level_nama" id="level_nama" class="form-control" required>
+                                <input type="text" name="level_nama" id="level_nama" class="form-control" value="{{ $level->level_nama }}" required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>
                 </div>

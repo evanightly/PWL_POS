@@ -1,61 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.app')
 
-<head>
-    <title>Data User</title>
-</head>
+@section('subtitle', 'User')
+@section('content_header_title', 'User')
+@section('content_header_subtitle', 'Daftar User')
 
-<body>
-    <h1>Data User</h1>
-    {{-- <table border="1" cellpadding="2" cellspacing="0">
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Nama</th>
-            <th>ID Level Pengguna</th>
-        </tr>
-        <td>{{ $data->user_id }}</td>
-        <td>{{ $data->username }}</td>
-        <td>{{ $data->nama }}</td>
-        <td>{{ $data->level_id }}</td>
-    </table> --}}
+@section('content_body')
+    <div class="container">
+        <div class="card">
+            <div class="card-header d-flex gap-3 align-items-center">
+                <h3 class="card-title">Daftar User</h3>
+                <a href="{{ url('user/create') }}" class="btn btn-primary">Tambah User</a>
+            </div>
+            <div class="card-body">
+                {{ $dataTable->table() }}
+            </div>
+        </div>
+    </div>
+@endsection
 
-    {{-- <table border="1" cellpadding="2" cellspacing="0">
-        <tr>
-            <th>Jumlah Pengguna</th>
-        </tr>
-        <td>{{ $data }}</td>
-    </table> --}}
-
-    <a href="/user/create">+ Tambah User</a>
-    <table border="1" cellpadding="2" cellspacing="0">
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Nama</th>
-            <th>ID Level Pengguna</th>
-            <th>Kode Level</th>
-            <th>Nama Level</th>
-            <th>Aksi</th>
-        </tr>
-        @foreach ($data as $d)
-            <tr>
-                <td>{{ $d->user_id }}</td>
-                <td>{{ $d->username }}</td>
-                <td>{{ $d->nama }}</td>
-                <td>{{ $d->level_id }}</td>
-                <td>{{ $d->level->level_kode }}</td>
-                <td>{{ $d->level->level_nama }}</td>
-                <td>
-                    <a href="/user/{{ $d->user_id }}">Ubah</a>
-                    <form action="{{ url('user/' . $d->user_id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Hapus</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-</body>
-
-</html>
+@push('js')
+    {{ $dataTable->scripts() }}
+@endpush
