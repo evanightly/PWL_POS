@@ -322,6 +322,22 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
+        ['header' => 'Master'],
+        [
+            'text' => 'Kategori',
+            'url' => 'kategori',
+            'icon' => 'fas fa-fw fa-book',
+        ],
+        [
+            'text' => 'Level',
+            'url' => 'level',
+            'icon' => 'fas fa-fw fa-layer-group',
+        ],
+        [
+            'text' => 'User',
+            'url' => 'user',
+            'icon' => 'fas fa-fw fa-user',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

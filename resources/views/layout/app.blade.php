@@ -22,12 +22,6 @@
     @endif
 @stop
 
-@section('content_top_nav_left')
-    <ul class="navbar-nav">
-        <li class="nav-item"><a href="{{ url('/kategori') }}" class="nav-link">Kategori</a></li>
-    </ul>
-@stop
-
 {{-- Rename section content to content_body --}}
 @section('content')
     @yield('content_body')
@@ -54,12 +48,12 @@
     <style type="text/css">
         {{-- You can add AdminLTE customizations here --}}
         /*
-                                            .card-header {
-                                            border-bottom: none;
-                                            }
-                                            .card-title {
-                                            font-weight: 600;
-                                            }
-                                            */
+                                                .card-header {
+                                                border-bottom: none;
+                                                }
+                                                .card-title {
+                                                font-weight: 600;
+                                                }
+                                                */
     </style>
 @endpush

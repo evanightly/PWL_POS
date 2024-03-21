@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class LevelController extends Controller
-{
+class LevelController extends Controller {
     public function index() {
         // DB::insert('insert into m_level(level_kode, level_nama, created_at) values(?, ?, ?)', ['CUS', 'Pelanggan', now()]);
         // return 'Insert data baru berhasil';
@@ -18,7 +17,15 @@ class LevelController extends Controller
         // return 'Delete data berhasil. Jumlah data yang dihapus: ' . $row . ' baris';
 
         $data = DB::select('select * from m_level');
-        return view('level', ['data' => $data]);
+        return view('level.index', ['data' => $data]);
+    }
 
+    public function create() {
+        return view('level.create');
+    }
+
+    public function store(Request $request) {
+        DB::insert('insert into m_level(level_kode, level_nama, created_at) values(?,?, ?)', [$request->kodeLevel, $request->namaLevel, now()]);
+        return redirect('/level');
     }
 }
