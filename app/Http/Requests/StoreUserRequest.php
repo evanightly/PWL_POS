@@ -19,10 +19,10 @@ class StoreUserRequest extends FormRequest {
      */
     public function rules(): array {
         return [
-            'level_id' => 'required|numeric',
-            'username' => 'required|unique:m_user,username',
-            'nama' => 'required',
-            'password' => 'required|min:6',
+            'username' => 'required|string|min:3|unique:m_user,username',
+            'nama' => 'required|string|max:100',
+            'level_id' => 'required|integer',
+            'password' => 'required|min:5',
         ];
     }
 }
