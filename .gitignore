@@ -1,6 +1,6 @@
 /.phpunit.cache
 /node_modules
-/public/template
+/public/adminlte
 /public/build
 /public/hot
 /public/storage
