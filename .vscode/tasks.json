@@ -1,0 +1,53 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "serve",
+            "type": "shell",
+            "command": "php artisan serve",
+            "presentation": {
+                "group": "groupA"
+            }
+        },
+        {
+            "label": "npm run dev",
+            "type": "shell",
+            "command": "npm run dev",
+            "presentation": {
+                "group": "groupA"
+            }
+        },
+        {
+            "label": "install composer dependencies",
+            "type": "shell",
+            "command": "composer install",
+            "presentation": {
+                "group": "groupB"
+            }
+        },
+        {
+            "label": "install npm dependencies",
+            "type": "shell",
+            "command": "npm install",
+            "presentation": {
+                "group": "groupB"
+            }
+        },
+        {
+            "label": "Dev",
+            "problemMatcher": [],
+            "dependsOn": ["serve", "npm run dev"]
+        },
+        {
+            "label": "Initialize App",
+            "problemMatcher": [],
+            "dependsOn": [
+                "install composer dependencies",
+                "install npm dependencies"
+            ]
+        }
+    ]
+}

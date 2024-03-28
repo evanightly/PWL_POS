@@ -1,9 +1,13 @@
 @extends('adminlte::page')
+
 @section('title', 'Tambah User')
+
 @section('content_header')
     <h1>Tambah User</h1>
 @stop
+
 @section('content')
+
     <div class="container">
         @if ($errors->any())
             <div class="alert alert-danger">
