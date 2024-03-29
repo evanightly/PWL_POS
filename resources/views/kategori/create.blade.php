@@ -1,49 +1,48 @@
-@extends('layout.app')
+@extends('layouts.template')
 
-@section('subtitle', 'Kategori')
-@section('content_header_title', 'Kategori')
-@section('content_header_subtitle', 'Tambah Kategori')
-
-@section('content_body')
-
-    <div class="container">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Tambah Kategori</h3>
-            </div>
-            <form action="{{ url('kategori') }}" method="POST">
+@section('content')
+    <div class="card card-outline card-primary">
+        <div class="card-header">
+            <h3 class="card-title">{{ $page->title }}</h3>
+            <div class="card-tools"></div>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url('kategori') }}" class="form-horizontal">
                 @csrf
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="kategori_kode">Kode Kategori</label>
-                        <input type="text"
-                            class="form-control
-                        @error('kategori_kode') is-invalid @enderror"
-                            id="kategori_kode" name="kategori_kode" placeholder="Kode Kategori">
-
+                <div class="form-group row">
+                    <label class="col-1 control-label col-form-label">Level Kode</label>
+                    <div class="col-11">
+                        <input type="text" class="form-control" id="kategori_kode" name="kategori_kode"
+                            value="{{ old('kategori_kode') }}" required>
                         @error('kategori_kode')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="kategori_nama">Nama Kategori</label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-1 control-label col-form-label">Level Nama</label>
+                    <div class="col-11">
                         <input type="text" class="form-control" id="kategori_nama" name="kategori_nama"
-                            placeholder="Nama Kategori">
+                            value="{{ old('kategori_nama') }}" required>
+                        @error('kategori_nama')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                <div class="form-group row">
+                    <label class="col-1 control-label col-form-label"></label>
+                    <div class="col-11">
+                        <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                        <a class="btn btn-sm btn-default ml-1" href="{{ url('kategori') }}">Kembali</a>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 @endsection
+
+@push('css')
+@endpush
+
+@push('js')
+@endpush

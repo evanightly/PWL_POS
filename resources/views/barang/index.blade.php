@@ -4,7 +4,7 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <a class="btn btn-sm btn-primary mt-1" href="{{ url('kategori/create') }}">Tambah</a>
+                <a class="btn btn-sm btn-primary mt-1" href="{{ url('barang/create') }}">Tambah</a>
             </div>
         </div>
         <div class="card-body">
@@ -14,7 +14,7 @@
             @if (session('error'))
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
-            {{-- <div class="row">
+            <div class="row">
                 <div class="col-md-12">
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Filter:</label>
@@ -25,17 +25,19 @@
                                     <option value="{{ $item->kategori_id }}">{{ $item->kategori_nama }}</option>
                                 @endforeach
                             </select>
-                            <small class="form-text text-muted">Kategori Pengguna</small>
+                            <small class="form-text text-muted">Kategori Barang {{ $item->kategori_id }}</small>
                         </div>
                     </div>
                 </div>
-            </div> --}}
-            <table class="table table-bordered table-striped table-hover table-sm" id="table_kategori">
+            </div>
+            <table class="table table-bordered table-striped table-hover table-sm" id="table_barang">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Kategori Kode</th>
-                        <th>Kategori Nama</th>
+                        <th>Barang Kode</th>
+                        <th>Barang Nama</th>
+                        <th>Harga Beli</th>
+                        <th>Harga Jual</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -48,10 +50,10 @@
 @push('js')
     <script>
         $(document).ready(function() {
-            var dataUser = $('#table_kategori').DataTable({
+            var dataUser = $('#table_barang').DataTable({
                 serverSide: true, // serverSide: true, jika ingin menggunakan server side processing
                 ajax: {
-                    "url": "{{ url('kategori/list') }}",
+                    "url": "{{ url('barang/list') }}",
                     "dataType": "json",
                     "type": "POST",
                     "data": function(d) {
@@ -64,12 +66,22 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "kategori_kode",
+                    data: "barang_kode",
                     className: "",
                     orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
                     searchable: true // searchable: true, jika ingin kolom ini bisa dicari
                 }, {
-                    data: "kategori_nama",
+                    data: "barang_nama",
+                    className: "",
+                    orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
+                    searchable: true // searchable: true, jika ingin kolom ini bisa dicari
+                }, {
+                    data: "harga_beli",
+                    className: "",
+                    orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
+                    searchable: true // searchable: true, jika ingin kolom ini bisa dicari
+                }, {
+                    data: "harga_jual",
                     className: "",
                     orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
                     searchable: true // searchable: true, jika ingin kolom ini bisa dicari
