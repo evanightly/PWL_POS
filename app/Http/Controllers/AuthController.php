@@ -47,7 +47,7 @@ class AuthController extends Controller {
 
         return redirect('login')
             ->withInput()
-            ->with('error', 'Pastikan kembali username dan password yang dimasukkan sudah benar');
+            ->withErrors(['login_gagal' => 'Pastikan kembali username dan password yang dimasukkan sudah benar']);
     }
 
     public function register() {
