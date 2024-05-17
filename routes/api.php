@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\Api\PenjualanController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\StokController;
 use Illuminate\Http\Request;
@@ -53,4 +54,10 @@ Route::middleware('auth:api')->group(function () {
     Route::get('stok/{stok}', [StokController::class, 'show']);
     Route::put('stok/{stok}', [StokController::class, 'update']);
     Route::delete('stok/{stok}', [StokController::class, 'destroy']);
+
+    Route::get('penjualan', [PenjualanController::class, 'index']);
+    Route::post('penjualan', [PenjualanController::class, 'store']);
+    Route::get('penjualan/{penjualan}', [PenjualanController::class, 'show']);
+    Route::put('penjualan/{penjualan}', [PenjualanController::class, 'update']);
+    Route::delete('penjualan/{penjualan}', [PenjualanController::class, 'destroy']);
 });
